@@ -1,4 +1,6 @@
 #!/bin/bash
+. .env
+
 IMAGE="icarrilloquero/rpi-openvpn"
 OVPN_DATA="ovpn-data"
 
