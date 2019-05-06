@@ -2,7 +2,10 @@
 . .env
 
 IMAGE="icarrilloquero/rpi-openvpn"
-OVPN_DATA="ovpn-data"
+OVPN_DATA="ovpn-data-2fa"
+
+CIPHER="AES-256-GCM"
+OPTS="-2 -C $CIPHER"
 
 BUFFER_CLIENT=393216
 
@@ -21,7 +24,7 @@ docker volume create --name $OVPN_DATA
 
 if [ $FORCE_DNS -eq 1 ]; then
 	docker run --rm -v $OVPN_DATA:/etc/openvpn $IMAGE \
-		ovpn_genconfig \
+		ovpn_genconfig $OPTS \
 			-u $OVPN_URI \
 	                -n "$DNS" \
 			-e "sndbuf $BUFFER_SERVER" \
@@ -29,7 +32,7 @@ if [ $FORCE_DNS -eq 1 ]; then
 			-p "sndbuf $BUFFER_CLIENT" \
 			-p "rcvbuf $BUFFER_CLIENT" \
 	                -p "script-security 2" \ &&
-	docker run --rm -v $OVPN_DATA:/etc/openvpn -it $IMAGE ovpn_initpki
+	docker run -e --rm -v $OVPN_DATA:/etc/openvpn -it $IMAGE ovpn_initpki
 else
 	docker run --rm -v $OVPN_DATA:/etc/openvpn $IMAGE \
 	        ovpn_genconfig $OPTS \

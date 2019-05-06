@@ -3,16 +3,16 @@ services:
   
   vpn:
     volumes:
-      - ovpn-data:/etc/openvpn
+      - ovpn-data-2fa:/etc/openvpn
     environment:
       - TZ=Europe/Madrid
     ports:
-      - ${VPN_PORT:-1194}:1194/{$PROTOCOL:-udp}
+      - ${VPN_PORT:-1194}:1194/${PROTOCOL:-udp}
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
     image: icarrilloquero/rpi-openvpn
 
 volumes:
-  ovpn-data:
+  ovpn-data-2fa:
     external: true

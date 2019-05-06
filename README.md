@@ -2,6 +2,11 @@
 
 Helpful scripts to easily set up an OpenVPN with docker.
 
+# Two-Factor-Authentication
+This branch is configured to allow Two-Factor-Authentication, via Google Authenticator app. When you generate a client, your shell will output a code to insert into Google Authenticator, as well as a few recovery codes. Now when connecting to the VPN, you will need to insert your client name and the current code as shown in Google Authenticator.
+
+For the full details, please refer to [kylemanna documentation](https://github.com/kylemanna/docker-openvpn).
+
 # Getting Started
 
 ### Prerequisites
