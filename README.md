@@ -1,4 +1,4 @@
-# DNS VPN
+# Docker VPN
 
 Helpful scripts to easily set up an OpenVPN with docker.
 
